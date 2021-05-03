@@ -49,12 +49,14 @@ public class TesteJavaScript {
 
         WebElement checkBox = driver.findElement(By.cssSelector("#checkboxes > input[type=checkbox]:nth-child(1)"));
         js.executeScript("arguments[0].checked=true", checkBox);
-        js.executeScript("alert('O elemento foi checkado!');");
-        Thread.sleep(2000);
+        js.executeScript("alert('O ELEMENTO foi checkado!');");
+        Thread.sleep(5000);
         driver.switchTo().alert().accept();
         js.executeScript("arguments[0].checked=false", checkBox);
 
         js.executeScript("history.go(0);");
+
+        driver.quit();
 
         Thread.sleep(2000);
     }
