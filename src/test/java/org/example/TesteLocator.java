@@ -20,10 +20,12 @@ public class TesteLocator {
 //        testeTagClass();
 //        testeClasseName();
 //        testeTexto();
-        testeCssSelectorId();
+//        testeCssSelectorId();
+//        testeCssSeletorAtributo();
+        testeCssSeletorSubString();
     }
 
-    public static void testeFacebook() {
+    public static void testeFacebook() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         driverChrome = new ChromeDriver();
         driverChrome.manage().window().maximize();
@@ -32,6 +34,8 @@ public class TesteLocator {
         driverChrome.findElement(By.id("email")).sendKeys("email@email.com.br");
         driverChrome.findElement(By.id("pass")).sendKeys("123456");
         driverChrome.findElement(By.name("login")).click();
+
+        Thread.sleep(5000);
 
         driverChrome.quit();
     }
@@ -91,5 +95,33 @@ public class TesteLocator {
         Thread.sleep(10000);
         driverChrome.quit();
 
+    }
+
+    public static void testeCssSeletorAtributo(){
+        WebDriverManager.chromedriver().setup();
+        driverChrome = new ChromeDriver();
+        driverChrome.manage().window().maximize();
+        driverChrome.get("https://www.facebook.com");
+
+        driverChrome.findElement(By.cssSelector("input[type=text]")).sendKeys("Teste@email.com");
+        driverChrome.findElement(By.cssSelector("input[name=pass]")).sendKeys("123456");
+//        driverChrome.findElement(By.name("login")).submit();
+        driverChrome.findElement(By.cssSelector("button[name=login]")).submit();
+
+    }
+
+    public static void testeCssSeletorSubString() {
+        WebDriverManager.chromedriver().setup();
+        driverChrome = new ChromeDriver();
+        driverChrome.manage().window().maximize();
+        driverChrome.get("https://www.facebook.com");
+
+        /** ^ é prefixo(iniciar) letra **/
+        driverChrome.findElement(By.cssSelector("input[name^=em]")).sendKeys("teste@email.com");
+        /** $ é sufixo(ultima) letra **/
+        driverChrome.findElement(By.cssSelector("input[name$=ss]")).sendKeys("1234567890");
+//        driverChrome.findElement(By.name("login")).submit();
+        /** * é meio letra **/
+        driverChrome.findElement(By.cssSelector("button[name*=ogi]")).submit();
     }
 }
