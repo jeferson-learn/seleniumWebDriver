@@ -15,11 +15,12 @@ public class TesteLocator {
 
     private static WebDriver driverChrome;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 //        testeFacebook();
 //        testeTagClass();
 //        testeClasseName();
-        testeTexto();
+//        testeTexto();
+        testeCssSelectorId();
     }
 
     public static void testeFacebook() {
@@ -74,5 +75,21 @@ public class TesteLocator {
 
 //        driverChrome.findElement(By.linkText("Esqueceu a senha?")).click();
         driverChrome.findElement(By.partialLinkText("a senha")).click();
+    }
+
+    public static void testeCssSelectorId() throws InterruptedException {
+        WebDriverManager.chromedriver().setup();
+        driverChrome = new ChromeDriver();
+        driverChrome.manage().window().maximize();
+        driverChrome.get("https://www.facebook.com");
+
+        driverChrome.findElement(By.cssSelector("#email")).sendKeys("Teste@email.com");
+        driverChrome.findElement(By.cssSelector("#pass")).sendKeys("123456");
+//        driverChrome.findElement(By.name("login")).click();
+        driverChrome.findElement(By.cssSelector("._6ltg button")).click();
+
+        Thread.sleep(10000);
+        driverChrome.quit();
+
     }
 }
