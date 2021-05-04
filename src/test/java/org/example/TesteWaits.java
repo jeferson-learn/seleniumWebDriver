@@ -41,7 +41,8 @@ public class TesteWaits {
         driver.findElement(By.linkText("Example 1: Element on page that is hidden")).click();
         driver.findElement(By.cssSelector(".example #start button")).click();
 //        Thread.sleep(5000);
-        WebElement textoHelloWorld = (new WebDriverWait(driver, 20)).until(ExpectedConditions.elementToBeClickable(By.cssSelector(".example #finish h4")));
+//        WebElement textoHelloWorld = (new WebDriverWait(driver, 20)).until(ExpectedConditions.elementToBeClickable(By.cssSelector(".example #finish h4")));
+        (new WebDriverWait(driver, 20)).until(ExpectedConditions.elementToBeClickable(By.cssSelector(".example #finish h4")));
 //        textoHelloWorld.click();
         String text = driver.findElement(By.cssSelector(".example #finish h4")).getText();
         System.out.println("Aparece: " + text);
